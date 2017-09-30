@@ -18,20 +18,21 @@ public class MyCanvas extends Canvas {
 
     // represents the position of the top-left corner of the canvas
     int xPos = 0, yPos  = 0;
+    Controller controller;
 
 
     private ChunkRecorder chunks;
 
-    public MyCanvas (Dimension mainFrameSize, TileDrawer tileDrawer) {
-        chunks = new ChunkRecorder(tileDrawer);
+    public MyCanvas (Dimension mainFrameSize, Controller controller) {
+        this.controller = controller;
+        chunks = new ChunkRecorder(controller);
         setBackground (Color.WHITE);
-        setSize((int) (mainFrameSize.width * .99), mainFrameSize.height);
+        setSize((int) (mainFrameSize.width * .98), mainFrameSize.height);
         //for some reason x side runs off when set to full frame size
     }
 
     public void paint (Graphics g) {
-        Graphics2D g2;
-        g2 = (Graphics2D) g;
+        Graphics2D g2 = (Graphics2D) g;
         drawChunks(g2);
         g2.setColor(Color.red);
         g2.drawRect(0, 0, 50, 50);
@@ -51,6 +52,7 @@ public class MyCanvas extends Canvas {
 
         for (int x = xMin; x <= xMax; x++) {
             for (int y = yMin; y <= yMax; y++) {
+                System.out.println("hi");
                 g2.drawImage(chunks.getChunkImage(x, y),
                         (x - xMin)*chunkSize - xOffset,
                         (y - yMin)*chunkSize - yOffset, null);
