@@ -13,7 +13,7 @@ public class Chunk {
     public static int CHUNK_SIZE = 128;
     public static int MAX_HEIGHT = 16;
     
-    public Chunk(Tile[][][] ts){
+    public Chunk(Tile[][][] ts) {
         tiles = ts;
         indices_of_heights = new int[CHUNK_SIZE][CHUNK_SIZE];
         for(int x=0; x<CHUNK_SIZE; x++){
@@ -37,13 +37,16 @@ public class Chunk {
         return tiles[x][y][z];
     }
     
-    public Tile getAtHeight(int x, int y){
+    public Tile getAtHeight(int x, int y) {
         return tiles[x][y][indices_of_heights[x][y]];
     }
     
     public int getHeight(int x, int y){
         return indices_of_heights[x][y];
     }
-    
-    
+
+    public boolean adjacentLoaded() {
+        //todo implement
+        return false;
+    }
 }
