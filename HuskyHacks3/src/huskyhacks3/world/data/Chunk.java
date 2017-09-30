@@ -5,48 +5,80 @@
  */
 package huskyhacks3.world.data;
 
+import huskyhacks3.world.data.tile.Tile;
+
 /**
  *
  * @author Benjamin
  */
 public class Chunk {
-    public static int CHUNK_SIZE = 128;
-    public static int MAX_HEIGHT = 16;
+    public static final int CHUNK_SIZE = 128;
+    public static final int MAX_VALUE = 512;
+    public static final int OCEAN_LEVEL = 256;
     
-    public Chunk(Tile[][][] ts) {
-        tiles = ts;
-        indices_of_heights = new int[CHUNK_SIZE][CHUNK_SIZE];
+    
+    private final TileColumn[][] tiles;
+    
+    public Chunk(Tile[][][] ts, Biome[][] bs, int[][] heights, int[][] precips, int[][] temp){
+        tiles = new TileColumn[CHUNK_SIZE][CHUNK_SIZE];
         for(int x=0; x<CHUNK_SIZE; x++){
             for(int y=0; y<CHUNK_SIZE; y++){
-                int z_max = 0;
-                for(int z=MAX_HEIGHT-1; z>=0; z--){
-                    if(tiles[x][y][z] != Tile.EMPTY){
-                        z_max = z;
-                        break;
-                    }
-                }
-                indices_of_heights[x][y] = z_max;
+                tiles[x][y] = new TileColumn(ts[x][y], bs[x][y], heights[x][y], precips[x][y], temp[x][y]);
             }
         }
     }
     
-    private Tile[][][] tiles;
-    private int[][] indices_of_heights;
-    
     public Tile get(int x, int y, int z){
-        return tiles[x][y][z];
+        return tiles[x][y].get(z);
     }
     
-    public Tile getAtHeight(int x, int y) {
-        return tiles[x][y][indices_of_heights[x][y]];
+    public Tile getSurface(int x, int y){
+        return tiles[x][y].getSurface();
+    }
+    public Tile getEnvironment(int x, int y){
+        return tiles[x][y].getEnvironment();
     }
     
     public int getHeight(int x, int y){
-        return indices_of_heights[x][y];
+        return tiles[x][y].height;
+    }
+    
+    private static class TileColumn {
+        Tile[] tiles;
+        Biome biome;
+        int height;
+        int precip;
+        int temp;
+        
+        public TileColumn(Tile[] t, Biome b, int h, int p, int te){
+            tiles = t;
+            biome = b;
+            height = h;
+            precip = p;
+            temp = te;
+        }
+        
+        Tile get(int z){
+            return tiles[z];
+        }
+        
+        Tile getSurface(){
+            return tiles[height-1];
+        }
+        
+        Tile getEnvironment(){
+            if(height > MAX_VALUE) return Tile.EMPTY;
+            return tiles[height];
+        }
+        
+        boolean lessThanOcean(){
+            return height<OCEAN_LEVEL;
+        }
     }
 
     public boolean adjacentLoaded() {
         //todo implement
         return false;
     }
+    
 }
