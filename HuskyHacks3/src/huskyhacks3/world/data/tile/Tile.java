@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package huskyhacks3.world.data;
+package huskyhacks3.world.data.tile;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -16,11 +16,26 @@ import java.awt.image.BufferedImage;
 public class Tile {
     public static final int TILE_SIZE = 12;
     
-    public static final Tile EMPTY = new Tile(0);
-    public static final Tile SOLID = new Tile(1);
+    //------------------------------------------------------------
     
-    public int id;
-    private Tile(int n){
+    public static final Tile EMPTY = new Tile(0);
+    
+    public static final Tile DIRT = new TerrainTile(1);
+    public static final Tile WATER = new TerrainTile(2);
+    public static final Tile GRASS = new TerrainTile(3);
+    public static final Tile SAND = new TerrainTile(4);
+    public static final Tile STONE = new TerrainTile(5);
+    
+    public static final Tile TREE_NORMAL = new EnvironmentTile(65);
+    public static final Tile TREE_PINE = new EnvironmentTile(66);
+    public static final Tile TREE_PALM = new EnvironmentTile(67);
+    public static final Tile BUSH = new EnvironmentTile(68);
+    public static final Tile BOULDER = new EnvironmentTile(69);
+    
+    //------------------------------------------------------------
+    
+    public final int id;
+    protected Tile(int n){
         id = n;
     }
     

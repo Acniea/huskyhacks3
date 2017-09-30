@@ -9,7 +9,7 @@ package huskyhacks3.util;
  * @author Benjamin
  */
 public class NoiseUtils {
-    
+    /*
     public static double octaved_noise2(double x, double y, int octaves, double persistence) {
         double total = 0;
         double frequency = 1;
@@ -59,7 +59,7 @@ public class NoiseUtils {
             layerWeight *= roughness;
         }
         return noiseSum / weightSum;
-    }
+    }*/
     
     public static double complex_noise2(double x, double y, int octaves, IFunc roughness, IFunc scale){
         double n0 = SimplexNoise.noise(x,y);
@@ -76,6 +76,7 @@ public class NoiseUtils {
             weightSum += layerWeight;
             layerWeight *= roughness.of(n0);
         }
+        //System.out.println(noiseSum / weightSum);
         return noiseSum / weightSum;
     }
     
