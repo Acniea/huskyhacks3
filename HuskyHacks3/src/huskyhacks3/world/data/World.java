@@ -13,9 +13,12 @@ import huskyhacks3.world.generation.Generator;
  */
 public class World {
     InfiniteGrid<Chunk> data;
+    int xoff, yoff;
     
     public World(){
         data = new InfiniteGrid();
+        xoff = 0;
+        yoff = 0;
     }
     
     public Chunk get(int x, int y){

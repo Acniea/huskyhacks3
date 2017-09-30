@@ -20,6 +20,10 @@ public class IFunc {
         f = f0;
     }
     
+    public static IFunc constant(double c){
+        return new IFunc(x -> c);
+    }
+    
     public double of(double x){
         return f.apply(x);
     }

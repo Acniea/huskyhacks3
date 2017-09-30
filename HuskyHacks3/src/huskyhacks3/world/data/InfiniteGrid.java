@@ -26,6 +26,10 @@ public class InfiniteGrid<T> {
     }
     
     public T get(int x, int y){
-        return ds.get(x).get(y);
+        GriddedList<T> g = ds.get(x);
+        if(g==null){
+            return null;
+        }
+        return g.get(y);
     }
 }

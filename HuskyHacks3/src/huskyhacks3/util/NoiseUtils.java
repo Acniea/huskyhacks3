@@ -10,7 +10,7 @@ package huskyhacks3.util;
  */
 public class NoiseUtils {
     
-    public double octaved_noise2(double x, double y, int octaves, double persistence) {
+    public static double octaved_noise2(double x, double y, int octaves, double persistence) {
         double total = 0;
         double frequency = 1;
         double amplitude = 1;
@@ -27,7 +27,7 @@ public class NoiseUtils {
         return total/maxValue;
     }
     
-    public double octaved_noise3(double x, double y, double z, int octaves, double persistence) {
+    public static double octaved_noise3(double x, double y, double z, int octaves, double persistence) {
         double total = 0;
         double frequency = 1;
         double amplitude = 1;
@@ -44,7 +44,7 @@ public class NoiseUtils {
         return total/maxValue;
     } 
     
-    public double octaved_noise2v2(double x, double y, int octaves, float roughness, float scale){
+    public static double octaved_noise2v2(double x, double y, int octaves, float roughness, float scale){
         double noiseSum = 0;
         double layerFrequency = scale;
         double layerWeight = 1;
@@ -61,7 +61,7 @@ public class NoiseUtils {
         return noiseSum / weightSum;
     }
     
-    public double complex_noise2(double x, double y, int octaves, IFunc roughness, IFunc scale){
+    public static double complex_noise2(double x, double y, int octaves, IFunc roughness, IFunc scale){
         double n0 = SimplexNoise.noise(x,y);
         double noiseSum = 0;
         double layerFrequency = scale.of(n0);
@@ -69,9 +69,9 @@ public class NoiseUtils {
         double weightSum = 0;
 	
         for (int octave = 0; octave < octaves; octave++) {
-            x *= layerFrequency;
-            y *= layerFrequency;
-            noiseSum += SimplexNoise.noise(x, y) * layerWeight;
+            //x *= layerFrequency;
+            //y *= layerFrequency;
+            noiseSum += SimplexNoise.noise(x*layerFrequency, y*layerFrequency) * layerWeight;
             layerFrequency *= 2;
             weightSum += layerWeight;
             layerWeight *= roughness.of(n0);
@@ -81,7 +81,5 @@ public class NoiseUtils {
     
     
     
-    
-    public IFunc i1 = new IFunc(x -> 6*Math.pow(x,5)-15*Math.pow(x,4)+10*Math.pow(x,3));
     
 }

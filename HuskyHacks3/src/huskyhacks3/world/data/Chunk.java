@@ -10,8 +10,8 @@ package huskyhacks3.world.data;
  * @author Benjamin
  */
 public class Chunk {
-    public static int CHUNK_SIZE = 32;
-    public static int MAX_HEIGHT = 512;
+    public static int CHUNK_SIZE = 128;
+    public static int MAX_HEIGHT = 16;
     
     public Chunk(Tile[][][] ts){
         tiles = ts;
@@ -19,7 +19,7 @@ public class Chunk {
         for(int x=0; x<CHUNK_SIZE; x++){
             for(int y=0; y<CHUNK_SIZE; y++){
                 int z_max = 0;
-                for(int z=MAX_HEIGHT-1; z>=0; z++){
+                for(int z=MAX_HEIGHT-1; z>=0; z--){
                     if(tiles[x][y][z] != Tile.EMPTY){
                         z_max = z;
                         break;
@@ -39,6 +39,10 @@ public class Chunk {
     
     public Tile getAtHeight(int x, int y){
         return tiles[x][y][indices_of_heights[x][y]];
+    }
+    
+    public int getHeight(int x, int y){
+        return indices_of_heights[x][y];
     }
     
     
