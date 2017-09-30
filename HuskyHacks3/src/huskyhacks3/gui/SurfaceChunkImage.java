@@ -34,5 +34,4 @@ public class SurfaceChunkImage {
     public BufferedImage getImage(){
         return image;
     }
-
 }

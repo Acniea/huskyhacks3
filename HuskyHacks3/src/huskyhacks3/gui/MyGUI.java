@@ -10,6 +10,7 @@ public class MyGUI {
 
     private Frame mainFrame;
     private Panel controlPanel;
+    private TileDrawer tileDrawer;
 
     public MyGUI(){
         prepareGUI();
@@ -37,7 +38,7 @@ public class MyGUI {
     }
 
     private void showCanvas(){
-        controlPanel.add(new MyCanvas(mainFrame.getSize()));
+        controlPanel.add(new MyCanvas(mainFrame.getSize(), tileDrawer));
         mainFrame.setVisible(true);
     }
 
