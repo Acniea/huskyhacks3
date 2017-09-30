@@ -80,7 +80,7 @@ public class SimplexNoise {  // Simplex noise in 2D, 3D and 4D
 
 
   // 2D simplex noise
-  public static double noise2(double xin, double yin) {
+  private static double noise2(double xin, double yin) {
     double n0, n1, n2; // Noise contributions from the three corners
     // Skew the input space to determine which simplex cell we're in
     double s = (xin+yin)*F2; // Hairy factor for 2D
@@ -135,7 +135,7 @@ public class SimplexNoise {  // Simplex noise in 2D, 3D and 4D
 
 
   // 3D simplex noise
-  public static double noise3(double xin, double yin, double zin) {
+  private static double noise3(double xin, double yin, double zin) {
     double n0, n1, n2, n3; // Noise contributions from the four corners
     // Skew the input space to determine which simplex cell we're in
     double s = (xin+yin+zin)*F3; // Very nice and simple skew factor for 3D
@@ -217,7 +217,7 @@ public class SimplexNoise {  // Simplex noise in 2D, 3D and 4D
 
 
   // 4D simplex noise, better simplex rank ordering method 2012-03-09
-  public static double noise4(double x, double y, double z, double w) {
+  private static double noise4(double x, double y, double z, double w) {
 
     double n0, n1, n2, n3, n4; // Noise contributions from the five corners
     // Skew the (x,y,z,w) space to determine which cell of 24 simplices we're in
