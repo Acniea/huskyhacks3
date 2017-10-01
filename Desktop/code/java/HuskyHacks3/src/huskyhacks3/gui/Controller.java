@@ -112,10 +112,10 @@ public class Controller implements Runnable{
         int xMin, xMax, yMin, yMax, xOffset, yOffset;
         int chunkSize = chunkRecorder.getChunkSize();
 
-        xMin = xPos / chunkSize -1;
-        xMax = (xPos + s.WIDTH) / chunkSize;
-        yMin = yPos  / chunkSize -1;
-        yMax = (yPos + s.HEIGHT)/ chunkSize;
+        xMin = xPos / chunkSize;
+        xMax = (xPos + s.WIDTH) / chunkSize+1;
+        yMin = yPos  / chunkSize;
+        yMax = (yPos + s.HEIGHT)/ chunkSize+1;
 
         xOffset = xPos % chunkSize;
         yOffset = yPos % chunkSize;
@@ -123,8 +123,8 @@ public class Controller implements Runnable{
         for (int x = xMin; x <= xMax; x++) {
             for (int y = yMin; y <= yMax; y++) {
                 s.drawImage(chunkRecorder.getChunkImage(x, y),
-                        (x - xMin)*chunkSize - xOffset,
-                        (y - yMin)*chunkSize - yOffset);
+                        (x - xMin-1)*chunkSize - xOffset,
+                        (y - yMin-1)*chunkSize - yOffset);
             }
         }
     }

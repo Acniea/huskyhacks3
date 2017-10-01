@@ -23,7 +23,7 @@ public class ChunkRecorder {
     public BufferedImage getChunkImage(int x, int y) {
         BufferedImage image = chunkImages.get(x, y);
         if (image == null) {
-            BufferedImage newChunkImage = chunkImage(getChunk(x, y));
+            BufferedImage newChunkImage = chunkImage(x, y);
             chunkImages.set(newChunkImage, x, y);
             return newChunkImage;
         } else {
@@ -41,12 +41,12 @@ public class ChunkRecorder {
         return Chunk.CHUNK_SIZE * tileDrawer.getSize();
     }
 
-    private BufferedImage chunkImage(Chunk chunk) {
+    private BufferedImage chunkImage(int cx, int cy) {
         BufferedImage image = new BufferedImage(getChunkSize(), getChunkSize(), BufferedImage.TYPE_4BYTE_ABGR);
         Graphics g = image.getGraphics();
         for (int x = 0; x < Chunk.CHUNK_SIZE; x++) {
             for (int y = 0; y < Chunk.CHUNK_SIZE; y++) {
-                tileDrawer.drawTile(chunk, x, y, g);
+                tileDrawer.drawTile(controller.world, cx, cy, x, y, g);
             }
         }
         g.setColor(Color.cyan);

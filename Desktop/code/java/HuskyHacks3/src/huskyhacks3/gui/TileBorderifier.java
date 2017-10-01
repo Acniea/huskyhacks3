@@ -12,16 +12,16 @@ public class TileBorderifier {
         Graphics g = image.getGraphics();
         g.setColor(color);
         if (left) {
-            g.drawRect(0, 0, 1, image.getHeight());
+            g.fillRect(0, 0, 1, image.getHeight());
         }
         if (right) {
-            g.drawRect(image.getWidth() - 1, 0, 1, image.getHeight());
+            g.fillRect(image.getWidth() - 1, 0, 1, image.getHeight());
         }
         if (up) {
-            g.drawRect(0, 0, image.getWidth(), 1);
+            g.fillRect(0, 0, image.getWidth(), 1);
         }
         if (down) {
-            g.drawRect(0, image.getHeight() - 1, image.getWidth(), 1);
+            g.fillRect(0, image.getHeight() - 1, image.getWidth(), 1);
         }
         return image;
     }

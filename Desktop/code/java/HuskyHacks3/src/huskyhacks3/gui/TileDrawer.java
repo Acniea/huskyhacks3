@@ -18,7 +18,7 @@ public abstract class TileDrawer {
     /**
      * Draws the tile at position (x, y) in the chunk
      */
-    public abstract void drawTile(Chunk chunk, int x, int y, Graphics g);
+    public abstract void drawTile(World w, int cx, int cy, int x, int y, Graphics g);
 
     public abstract int getSize();
 }

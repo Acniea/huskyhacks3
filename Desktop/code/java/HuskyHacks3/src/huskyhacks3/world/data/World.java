@@ -37,4 +37,8 @@ public class World {
     public Chunk get(int x, int y){
         return requestChunk(x, y);
     }
+    
+    public Object getTile(int cx, int cy, int x, int y){
+        return null;
+    }
 }
