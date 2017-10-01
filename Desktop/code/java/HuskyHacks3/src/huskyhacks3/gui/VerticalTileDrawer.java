@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
  */
 public class VerticalTileDrawer extends TileDrawer{
     @Override
-    public void drawTile(World w, int cx, int cy, int x, int y, Graphics g) {
+    public void drawTTile(World w, int cx, int cy, int x, int y, Graphics g) {
         Chunk chunk = w.get(cx, cy);
         /*int height = 256*chunk.getHeight(x, y)/(Chunk.MAX_VALUE);
         //between 0 and 512
@@ -55,17 +55,15 @@ public class VerticalTileDrawer extends TileDrawer{
         } else {
             r = height<chunk.getHeight(x+1,y);
         }
-        /*if(x==0 || x == Chunk.CHUNK_SIZE-1 || y==0 || y == Chunk.CHUNK_SIZE-1){
-            u=d=l=r=false;
-        } else {
-            u = chunk.getHeight(x,y)<chunk.getHeight(x,y-1);
-            d = chunk.getHeight(x,y)<chunk.getHeight(x,y+1);
-            l = chunk.getHeight(x,y)<chunk.getHeight(x-1,y);
-            r = chunk.getHeight(x,y)<chunk.getHeight(x+1,y);
-        }*/
-        //System.out.println(x+" "+y);
-        //System.out.println(u+" "+d+" "+l+" "+r);
         ImageImporter.getSprite(chunk.getSurface(x,y), l, r, u, d).draw(g,x*getSize(),y*getSize());
+        /*ImageImporter.getSprite(chunk.getEnvironment(x,y)).draw(g,x*getSize(),y*getSize());
+        if(chunk.getHeight(x, y)<=Chunk.OCEAN_LEVEL){
+            g.drawImage(ImageImporter.getImage(Tile.WATER), x*getSize(), y*getSize(), null);
+        }*/
+    }
+
+    public void drawETile(World w, int cx, int cy, int x, int y, Graphics g) {
+        Chunk chunk = w.get(cx, cy);
         ImageImporter.getSprite(chunk.getEnvironment(x,y)).draw(g,x*getSize(),y*getSize());
         if(chunk.getHeight(x, y)<=Chunk.OCEAN_LEVEL){
             g.drawImage(ImageImporter.getImage(Tile.WATER), x*getSize(), y*getSize(), null);

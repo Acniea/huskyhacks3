@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import huskyhacks3.world.data.Chunk;
+import huskyhacks3.world.data.FiniteGrid;
 import huskyhacks3.world.data.InfiniteGrid;
 
 /**
@@ -46,7 +47,12 @@ public class ChunkRecorder {
         Graphics g = image.getGraphics();
         for (int x = 0; x < Chunk.CHUNK_SIZE; x++) {
             for (int y = 0; y < Chunk.CHUNK_SIZE; y++) {
-                tileDrawer.drawTile(controller.world, cx, cy, x, y, g);
+                tileDrawer.drawTTile(controller.world, cx, cy, x, y, g);
+            }
+        }
+        for (int x = 0; x < Chunk.CHUNK_SIZE; x++) {
+            for (int y = 0; y < Chunk.CHUNK_SIZE; y++) {
+                tileDrawer.drawETile(controller.world, cx, cy, x, y, g);
             }
         }
         g.setColor(Color.cyan);
