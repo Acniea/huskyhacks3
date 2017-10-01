@@ -1,15 +1,7 @@
 package huskyhacks3.gui;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-
-import javax.swing.*;
-
-import huskyhacks3.world.data.Chunk;
-
-import static java.lang.Math.floor;
 
 /**
  * Created by david on 9/30/2017.
@@ -21,11 +13,11 @@ public class MyCanvas extends Canvas {
     Controller controller;
 
 
-    private ChunkRecorder chunks;
+    private ChunkRecorder chunkRecorder;
 
     public MyCanvas (Dimension mainFrameSize, Controller controller) {
         this.controller = controller;
-        chunks = new ChunkRecorder(controller);
+        chunkRecorder = new ChunkRecorder(controller);
         setBackground (Color.WHITE);
         setSize((int) (mainFrameSize.width * .98), mainFrameSize.height);
         //for some reason x side runs off when set to full frame size
@@ -33,14 +25,17 @@ public class MyCanvas extends Canvas {
 
     public void paint (Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-        drawChunks(g2);
+        g2.drawImage(drawChunks(), 0, 0, null);
         g2.setColor(Color.red);
         g2.drawRect(0, 0, 50, 50);
     }
 
-    private void drawChunks(Graphics2D g2){
+    private BufferedImage drawChunks(){
+        BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = (Graphics2D) image.getGraphics();
+
         int xMin, xMax, yMin, yMax, xOffset, yOffset;
-        int chunkSize = chunks.getChunkSize();
+        int chunkSize = chunkRecorder.getChunkSize();
 
         xMin = xPos / chunkSize;
         xMax = (xPos + getWidth()) / chunkSize;
@@ -52,12 +47,12 @@ public class MyCanvas extends Canvas {
 
         for (int x = xMin; x <= xMax; x++) {
             for (int y = yMin; y <= yMax; y++) {
-                System.out.println("hi");
-                g2.drawImage(chunks.getChunkImage(x, y),
+                g2d.drawImage(chunkRecorder.getChunkImage(x, y),
                         (x - xMin)*chunkSize - xOffset,
                         (y - yMin)*chunkSize - yOffset, null);
             }
         }
+        return image;
     }
 
     private void focus(){

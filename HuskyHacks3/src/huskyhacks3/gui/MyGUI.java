@@ -40,7 +40,6 @@ public class MyGUI {
 
     private void showCanvas(Controller controller){
         controlPanel.add(new MyCanvas(mainFrame.getSize(), controller));
-        mainFrame.setVisible(true);
     }
 
 
