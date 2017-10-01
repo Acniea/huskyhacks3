@@ -21,12 +21,20 @@ public class World {
         yoff = 0;
     }
     
-    public Chunk get(int x, int y){
+    private Chunk createChunk(int x, int y){
+        Chunk c = Generator.generate(x,y);
+        data.set(c,x,y);
+        return c;
+    }
+    
+    private Chunk requestChunk(int x, int y){
         Chunk c0 = data.get(x,y);
         if(c0==null){
-            Chunk c = Generator.generate(x,y);
-            data.set(c,x,y);
-            return c;
+            return createChunk(x, y);
         } else return c0;
+    }
+    
+    public Chunk get(int x, int y){
+        return requestChunk(x, y);
     }
 }

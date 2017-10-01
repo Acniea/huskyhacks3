@@ -12,7 +12,7 @@ import huskyhacks3.world.data.tile.Tile;
  * @author Benjamin
  */
 public class Chunk {
-    public static final int CHUNK_SIZE = 128;
+    public static final int CHUNK_SIZE =640;
     public static final int MAX_VALUE = 512;
     public static final int OCEAN_LEVEL = 256;
     
@@ -40,6 +40,14 @@ public class Chunk {
     }
     
     public int getHeight(int x, int y){
+        return tiles[x][y].height;
+    }
+    
+    public int getPrecip(int x, int y){
+        return tiles[x][y].height;
+    }
+    
+    public int getTemp(int x, int y){
         return tiles[x][y].height;
     }
     

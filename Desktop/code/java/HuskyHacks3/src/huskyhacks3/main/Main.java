@@ -5,6 +5,7 @@
  */
 package huskyhacks3.main;
 
+import huskyhacks3.gui.Controller;
 import huskyhacks3.world.data.*;
 import huskyhacks3.world.data.tile.Tile;
 
@@ -16,6 +17,7 @@ public class Main {
     public static void main(String[] args) {
         World w = new World();
         printChunk(w.get(0,0));
+//        Controller controller = new Controller();
     }
     
     public static void printChunk(Chunk c){

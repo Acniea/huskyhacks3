@@ -355,9 +355,9 @@ public class SimplexNoise {  // Simplex noise in 2D, 3D and 4D
   }
   
   public static double noise(double x, double y){
-      return (noise2(x,y)+1)/2;
+      return noise2(x,y);
   }
   public static double noise(double x, double y, double z){
-      return (noise3(x,y,z)+1)/2;
+      return noise3(x,y,z);
   }
 }
