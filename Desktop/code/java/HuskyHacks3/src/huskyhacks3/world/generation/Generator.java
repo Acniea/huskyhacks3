@@ -72,6 +72,7 @@ public class Generator {
     }
     
     public static Chunk generate(int x, int y){
+        System.out.println("generating at " + x + " " + y);
         Tile[][][] tiles = new Tile[Chunk.CHUNK_SIZE][Chunk.CHUNK_SIZE][Chunk.MAX_VALUE];
         Biome[][] biomes = new Biome[Chunk.CHUNK_SIZE][Chunk.CHUNK_SIZE];
         int[][] heights = new int[Chunk.CHUNK_SIZE][Chunk.CHUNK_SIZE];

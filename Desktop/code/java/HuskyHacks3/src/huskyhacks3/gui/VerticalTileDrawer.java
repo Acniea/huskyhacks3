@@ -10,7 +10,7 @@ import java.awt.*;
 public class VerticalTileDrawer extends TileDrawer{
     @Override
     public void drawTile(Chunk chunk, int x, int y, Graphics g) {
-        int height = 256*chunk.getHeight(x, y)/(Chunk.MAX_VALUE);
+        /*int height = 256*chunk.getHeight(x, y)/(Chunk.MAX_VALUE);
         //between 0 and 512
         //Color c = new Color(height/2, height/2, height/2);
         Color c;
@@ -28,7 +28,9 @@ public class VerticalTileDrawer extends TileDrawer{
             c = new Color(value,value,value); //snow
         }
         g.setColor(c);
-        g.fillRect(x * getSize(), y * getSize() , getSize(), getSize());
+        g.fillRect(x * getSize(), y * getSize() , getSize(), getSize());*/
+        g.drawImage(ImageImporter.getImage(chunk.getSurface(x,y)),x*getSize(),y*getSize(),null);
+        g.drawImage(ImageImporter.getImage(chunk.getEnvironment(x,y)),x*getSize(),y*getSize(),null);
     }
 
     @Override

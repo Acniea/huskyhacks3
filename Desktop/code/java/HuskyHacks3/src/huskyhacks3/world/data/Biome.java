@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class Biome {
     static IFunc F_BIOME_ROUGHNESS = IFunc.constant(0);
-    static IFunc F_BIOME_SCALE = IFunc.constant(0.03);
+    static IFunc F_BIOME_SCALE = IFunc.constant(0.3);
     
     public static final List<Biome> BIOMES = new ArrayList<>();
     
@@ -31,6 +31,8 @@ public class Biome {
                                                 new Tile[]{Tile.SAND, Tile.STONE}, new double[]{0.9, 0.1});
     public static final Biome SHALLOW_OCEAN = new Biome(new Tile[]{Tile.EMPTY}, new double[]{1}, 
                                                 new Tile[]{Tile.SAND, Tile.STONE}, new double[]{0.9, 0.1});
+    public static final Biome BEACH = new Biome(new Tile[]{Tile.EMPTY, Tile.TREE_PALM}, new double[]{.95, .05}, 
+                                               new Tile[]{Tile.SAND}, new double[]{1});
     public static final Biome FOREST = new Biome(new Tile[]{Tile.EMPTY, Tile.TREE_NORMAL, Tile.TREE_PINE, Tile.BUSH, Tile.TALL_GRASS}, new double[]{.05, .15, .15, 0.1, 0.55}, 
                                                new Tile[]{Tile.GRASS, Tile.DIRT}, new double[]{0.9, 0.1});
     public static final Biome RAIN_FOREST = new Biome(new Tile[]{Tile.EMPTY, Tile.TREE_NORMAL, Tile.TREE_PINE, Tile.BUSH, Tile.TALL_GRASS}, new double[]{.05, .4, .4, 0.1, 0.05}, 
@@ -64,13 +66,13 @@ public class Biome {
                 THE_CUBE[5][precip][temp] = MID_OCEAN;
                 THE_CUBE[6][precip][temp] = MID_OCEAN;
                 THE_CUBE[7][precip][temp] = SHALLOW_OCEAN;
+                THE_CUBE[8][precip][temp] = BEACH;
             }
         }
         
         for(int precip=0; precip < PRECIP_GRADATION; precip++){
             for(int temp=0; temp < TEMP_GRADATION; temp++){
                 if(precip<PRECIP_GRADATION/2 && temp<TEMP_GRADATION/2){
-                    THE_CUBE[8][precip][temp] = PLAIN;
                     THE_CUBE[9][precip][temp] = PLAIN;
                     THE_CUBE[10][precip][temp] = PLAIN;
                     THE_CUBE[11][precip][temp] = PLAIN;
@@ -80,7 +82,6 @@ public class Biome {
                     THE_CUBE[15][precip][temp] = HIGH_MOUNTAIN;
                 }
                 if(precip<PRECIP_GRADATION/2 && temp>=TEMP_GRADATION/2){
-                    THE_CUBE[8][precip][temp] = DESERT;
                     THE_CUBE[9][precip][temp] = DESERT;
                     THE_CUBE[10][precip][temp] = DESERT;
                     THE_CUBE[11][precip][temp] = DESERT;
@@ -90,7 +91,6 @@ public class Biome {
                     THE_CUBE[15][precip][temp] = HIGH_MOUNTAIN;
                 }
                 if(precip>=PRECIP_GRADATION/2 && temp<TEMP_GRADATION/2){
-                    THE_CUBE[8][precip][temp] = TAIGA;
                     THE_CUBE[9][precip][temp] = TAIGA;
                     THE_CUBE[10][precip][temp] = TAIGA;
                     THE_CUBE[11][precip][temp] = TAIGA;
@@ -100,7 +100,6 @@ public class Biome {
                     THE_CUBE[15][precip][temp] = HIGH_MOUNTAIN;
                 }
                 if(precip>=PRECIP_GRADATION/2 && temp>=TEMP_GRADATION/2){
-                    THE_CUBE[8][precip][temp] = RAIN_FOREST;
                     THE_CUBE[9][precip][temp] = RAIN_FOREST;
                     THE_CUBE[10][precip][temp] = RAIN_FOREST;
                     THE_CUBE[11][precip][temp] = RAIN_FOREST;
@@ -136,6 +135,9 @@ public class Biome {
         int h = height/(Chunk.MAX_VALUE/HEIGHT_GRADATION);
         int p = precip/(Chunk.MAX_VALUE/PRECIP_GRADATION);
         int t = temp/(Chunk.MAX_VALUE/TEMP_GRADATION);
+        System.out.println(height +" "+h);
+        System.out.println(precip +" "+p);
+        System.out.println(temp +" "+t);
         return THE_CUBE[h][p][t];
     }
     
@@ -182,11 +184,11 @@ public class Biome {
     }
     
     public Tile getETile(int x, int y){
-        return getETileFromCoords(x, y);
+        return getETileFromRandom(x, y);
     }
     
     public Tile getTTile(int x, int y){
-        return getTTileFromCoords(x, y);
+        return getTTileFromRandom(x, y);
     }
     
     private Tile getETileFromRandom(int x, int y){

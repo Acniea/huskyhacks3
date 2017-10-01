@@ -20,9 +20,9 @@ public class InfiniteGrid<T> {
         GriddedList<T> g = ds.get(x);
         if(g==null){
             g = new GriddedList();
-            ds.set(x, g);
+            ds.set(g, x);
         }
-        g.set(y, t);
+        g.set(t, y);
     }
     
     public T get(int x, int y){

@@ -69,7 +69,7 @@ public class Controller implements Runnable{
             
             if (System.currentTimeMillis()-timer>1000){
                 timer+=1000;
-                System.out.println(updates + " Ticks, FPS "+frames);
+                //System.out.println(updates + " Ticks, FPS "+frames);
                 updates=0;
                 frames=0;
             }
@@ -107,9 +107,9 @@ public class Controller implements Runnable{
         int xMin, xMax, yMin, yMax, xOffset, yOffset;
         int chunkSize = chunkRecorder.getChunkSize();
 
-        xMin = xPos / chunkSize;
+        xMin = xPos / chunkSize -1;
         xMax = (xPos + s.WIDTH) / chunkSize;
-        yMin = yPos  / chunkSize;
+        yMin = yPos  / chunkSize -1;
         yMax = (yPos + s.HEIGHT)/ chunkSize;
 
         xOffset = xPos % chunkSize;
