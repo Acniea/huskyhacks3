@@ -8,6 +8,7 @@ package huskyhacks3.gui;
 import huskyhacks3.gui.Sprite;
 import huskyhacks3.world.data.tile.Tile;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
@@ -24,7 +25,7 @@ import javax.imageio.ImageIO;
  * @author Benjamin
  */
 public class ImageImporter {
-    
+    static int WATER_OPACITY = 100;
     static List<Sprite[]> sprites = new ArrayList<Sprite[]>();
     static String[] files = new String[]{"tile_0", "tile_1", "tile_2", "tile_3", "tile_4", "tile_5", "tile_6", "tile_7", 
                                          "tile_64", "tile_65", "tile_66", "tile_67", "tile_68", "tile_69", "tile_70", "tile_71"};
@@ -38,7 +39,7 @@ public class ImageImporter {
     
     public static void importFiles() throws IOException {
         BufferedImage temp;
-        Color c = new Color(0,0,0,125);
+        Color c = new Color(0,0,0,75);
         for(String s : files){
             temp = ImageIO.read(new File("C:\\Users\\Benjamin\\Desktop\\code\\java\\HuskyHacks3\\src\\resources\\"+s+".png"));
             Sprite spr = new Sprite(temp.getWidth()/2-Tile.TILE_SIZE/2, 
@@ -110,6 +111,21 @@ public class ImageImporter {
                                  s);
             sprites.add(sprs);
         }
+        for(int i=0; i<sprites.get(1).length; i++){
+            BufferedImage image = sprites.get(1)[i].image;
+            BufferedImage resultImg = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_ARGB);
+            for (int y = 0; y < image.getHeight(); y++) {
+                for (int x = 0; x < image.getWidth(); x++) {
+                    Color color = new Color(image.getRGB(x, y));
+                    Color maskedColor = new Color(color.getRed(), color.getGreen(), color.getBlue(), WATER_OPACITY);
+                    resultImg.setRGB(x, y, maskedColor.getRGB());
+                    Graphics g = resultImg.getGraphics();
+                    g.setColor(maskedColor);
+                    g.drawRect(x,y,0,0);
+                }
+            }
+            sprites.get(1)[i].image = resultImg;
+        }
     }
     
     public static BufferedImage getImage(Tile t){
@@ -131,6 +147,30 @@ public class ImageImporter {
         for(int i=0; i<sprites.size(); i++){
             if(sprites.get(i)[index].name.equals("tile_"+Integer.toString(t.id))){
                 return sprites.get(i)[index].image;
+            }
+        }
+        return null;
+    }
+    
+    public static Sprite getSprite(Tile t){
+        for(int i=0; i<sprites.size(); i++){
+            if(sprites.get(i)[0].name.equals("tile_"+Integer.toString(t.id))){
+                return sprites.get(i)[0];
+            }
+        }
+        return null;
+    }
+    
+    public static Sprite getSprite(Tile t, boolean l, boolean r, boolean u, boolean d){
+        int index=0;
+        if(l) index+=8;
+        if(r) index+=4;
+        if(u) index+=2;
+        if(d) index+=1;
+        
+        for(int i=0; i<sprites.size(); i++){
+            if(sprites.get(i)[index].name.equals("tile_"+Integer.toString(t.id))){
+                return sprites.get(i)[index];
             }
         }
         return null;

@@ -65,10 +65,9 @@ public class VerticalTileDrawer extends TileDrawer{
         }*/
         //System.out.println(x+" "+y);
         //System.out.println(u+" "+d+" "+l+" "+r);
-        if(chunk.getHeight(x, y)>Chunk.OCEAN_LEVEL){
-            g.drawImage(ImageImporter.getImage(chunk.getSurface(x,y), l, r, u, d),x*getSize(),y*getSize(),null);
-            g.drawImage(ImageImporter.getImage(chunk.getEnvironment(x,y)),x*getSize(),y*getSize(),null);
-        } else {
+        ImageImporter.getSprite(chunk.getSurface(x,y), l, r, u, d).draw(g,x*getSize(),y*getSize());
+        ImageImporter.getSprite(chunk.getEnvironment(x,y)).draw(g,x*getSize(),y*getSize());
+        if(chunk.getHeight(x, y)<=Chunk.OCEAN_LEVEL){
             g.drawImage(ImageImporter.getImage(Tile.WATER), x*getSize(), y*getSize(), null);
         }
     }

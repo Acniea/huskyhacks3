@@ -5,6 +5,7 @@
  */
 package huskyhacks3.gui;
 
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 /**
@@ -21,5 +22,9 @@ public class Sprite {
         yoff = y;
         image = bi;
         name = n;
+    }
+    
+    public void draw(Graphics g, int x, int y){
+        g.drawImage(image, x-xoff, y-yoff, null);
     }
 }

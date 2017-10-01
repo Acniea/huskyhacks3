@@ -43,8 +43,8 @@ public class Biome {
                                                new Tile[]{Tile.GRASS, Tile.DIRT}, new double[]{0.9, 0.1});
     public static final Biome DESERT = new Biome(new Tile[]{Tile.EMPTY, Tile.DEAD_BUSH, Tile.BOULDER}, new double[]{.95, .04, 0.01}, 
                                                new Tile[]{Tile.SAND, Tile.DIRT}, new double[]{0.9, 0.1});
-    public static final Biome LOW_MOUNTAIN = new Biome(new Tile[]{Tile.EMPTY, Tile.DEAD_BUSH}, new double[]{.95, .05}, 
-                                               new Tile[]{Tile.DIRT, Tile.GRASS, Tile.STONE}, new double[]{.33,.33,.34});
+    public static final Biome LOW_MOUNTAIN = new Biome(new Tile[]{Tile.EMPTY, Tile.DEAD_BUSH, Tile.TREE_PINE, Tile.TALL_GRASS}, new double[]{.8, .05, .05, .1}, 
+                                               new Tile[]{Tile.DIRT, Tile.GRASS, Tile.STONE}, new double[]{.1, .45, .45});
     public static final Biome MOUNTAIN = new Biome(new Tile[]{Tile.EMPTY, Tile.DEAD_BUSH}, new double[]{.95, .05}, 
                                                new Tile[]{Tile.STONE}, new double[]{1});
     public static final Biome HIGH_MOUNTAIN = new Biome(new Tile[]{Tile.EMPTY}, new double[]{1}, 

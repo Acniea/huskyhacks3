@@ -45,7 +45,7 @@ public class Generator {
     
     public static final double SCALE = 0.00015;
     public static final IFunc F_SCALE = IFunc.constant(SCALE);
-    public static final IFunc F_ROUGHNESS = new IFunc(n -> 0.55 /*0.1f*n*/);
+    public static final IFunc F_ROUGHNESS = new IFunc(n -> 0.85 /*+0.1f*n*/);
     
     public static int getHeight(int x, int y){
         return HEIGHT_FUNC.intOf(scaledNoise(x+HEIGHT_SEED_X, y+HEIGHT_SEED_Y, F_ROUGHNESS, F_SCALE));
