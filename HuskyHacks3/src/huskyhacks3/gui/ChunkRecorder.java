@@ -40,7 +40,6 @@ public class ChunkRecorder {
     public int getChunkSize() {
         return Chunk.CHUNK_SIZE * tileDrawer.getSize();
     }
-
     private BufferedImage drawChunk(Chunk chunk) {
         BufferedImage image = new BufferedImage(getChunkSize(), getChunkSize(), BufferedImage.TYPE_4BYTE_ABGR);
         Graphics2D g2d = (Graphics2D) image.getGraphics();
@@ -49,8 +48,6 @@ public class ChunkRecorder {
                 tileDrawer.drawTile(chunk, x, y, g2d);
             }
         }
-//        g2d.setColor(Color.cyan);
-//        g2d.drawRect(0, 0 , getChunkSize(), getChunkSize());
         return image;
     }
 }

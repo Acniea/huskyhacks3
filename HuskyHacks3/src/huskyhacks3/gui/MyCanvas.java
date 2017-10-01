@@ -7,19 +7,16 @@ import java.awt.image.BufferedImage;
  * Created by david on 9/30/2017.
  */
 public class MyCanvas extends Canvas {
-
-    // represents the position of the top-left corner of the canvas
-    int xPos = 0, yPos  = 0;
     Controller controller;
 
 
     private ChunkRecorder chunkRecorder;
 
-    public MyCanvas (Dimension mainFrameSize, Controller controller) {
+    public MyCanvas(Dimension mainFrameSize, Controller controller, Controller.KeyboardListener keyboardListener) {
         this.controller = controller;
         chunkRecorder = new ChunkRecorder(controller);
-        setBackground (Color.WHITE);
-        setSize((int) (mainFrameSize.width * .98), mainFrameSize.height);
+        this.addKeyListener(keyboardListener);
+        setSize((int) (mainFrameSize.width ), mainFrameSize.height);
         //for some reason x side runs off when set to full frame size
     }
 
@@ -36,6 +33,10 @@ public class MyCanvas extends Canvas {
 
         int xMin, xMax, yMin, yMax, xOffset, yOffset;
         int chunkSize = chunkRecorder.getChunkSize();
+
+        int xPos = controller.getX(), yPos = controller.getY();
+
+        System.out.println(Integer.toString(xPos) + ", " + Integer.toString(yPos));
 
         xMin = xPos / chunkSize;
         xMax = (xPos + getWidth()) / chunkSize;
