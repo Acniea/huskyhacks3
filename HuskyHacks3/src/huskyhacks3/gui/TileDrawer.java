@@ -1,16 +1,22 @@
 package huskyhacks3.gui;
 
-import java.awt.image.BufferedImage;
+
+
 
 import huskyhacks3.world.data.Chunk;
-import huskyhacks3.world.data.tile.Tile;
+
+import java.awt.Graphics2D;
+
 
 /**
  * Created by david on 9/29/2017.
  */
 public abstract class TileDrawer {
 
-    public abstract BufferedImage drawTile(Chunk chunk, int x, int y);
+    /**
+     * Draws the tile at position (x, y) in the chunk
+     */
+    public abstract void drawTile(Chunk chunk, int x, int y, Graphics2D graphics2D);
 
     public abstract int getSize();
 }
