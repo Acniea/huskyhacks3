@@ -20,8 +20,8 @@ public class Tile {
     
     public static final Tile EMPTY = new Tile(0);
     
-    public static final Tile DIRT = new TerrainTile(1);
-    public static final Tile WATER = new TerrainTile(2);
+    public static final Tile WATER = new TerrainTile(1);
+    public static final Tile DIRT = new TerrainTile(2);
     public static final Tile GRASS = new TerrainTile(3);
     public static final Tile SAND = new TerrainTile(4);
     public static final Tile STONE = new TerrainTile(5);

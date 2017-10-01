@@ -43,7 +43,7 @@ public class Generator {
     
     //------------------------------------------------------------
     
-    public static final double SCALE = 0.003;
+    public static final double SCALE = 0.0003;
     public static final IFunc F_SCALE = IFunc.constant(SCALE);
     public static final IFunc F_ROUGHNESS = new IFunc(n -> 0.55 /*0.1f*n*/);
     
