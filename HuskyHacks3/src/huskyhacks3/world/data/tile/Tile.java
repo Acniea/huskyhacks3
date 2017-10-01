@@ -25,12 +25,18 @@ public class Tile {
     public static final Tile GRASS = new TerrainTile(3);
     public static final Tile SAND = new TerrainTile(4);
     public static final Tile STONE = new TerrainTile(5);
+    public static final Tile SNOW = new TerrainTile(6);
+    public static final Tile ICE = new TerrainTile(7);
     
+    public static final Tile TALL_GRASS = new EnvironmentTile(64);
     public static final Tile TREE_NORMAL = new EnvironmentTile(65);
     public static final Tile TREE_PINE = new EnvironmentTile(66);
     public static final Tile TREE_PALM = new EnvironmentTile(67);
     public static final Tile BUSH = new EnvironmentTile(68);
-    public static final Tile BOULDER = new EnvironmentTile(69);
+    public static final Tile DEAD_BUSH = new EnvironmentTile(69);
+    public static final Tile BOULDER = new EnvironmentTile(70);
+    public static final Tile SEAWEED = new EnvironmentTile(71);
+    
     
     //------------------------------------------------------------
     

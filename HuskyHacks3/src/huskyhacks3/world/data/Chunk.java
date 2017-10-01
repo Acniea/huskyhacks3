@@ -43,6 +43,14 @@ public class Chunk {
         return tiles[x][y].height;
     }
     
+    public int getPrecip(int x, int y){
+        return tiles[x][y].height;
+    }
+    
+    public int getTemp(int x, int y){
+        return tiles[x][y].height;
+    }
+    
     private static class TileColumn {
         Tile[] tiles;
         Biome biome;

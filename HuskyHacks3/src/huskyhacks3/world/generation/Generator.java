@@ -37,15 +37,15 @@ public class Generator {
     
     
     public static final IFunc LERP = new IFunc(x -> 6*Math.pow(x,5)-15*Math.pow(x,4)+10*Math.pow(x,3));
-    public static final IFunc HEIGHT_FUNC = h1;
-    public static final IFunc PRECIP_FUNC = h1;
-    public static final IFunc TEMP_FUNC = h1;
+    public static final IFunc HEIGHT_FUNC = LERP;
+    public static final IFunc PRECIP_FUNC = LERP;
+    public static final IFunc TEMP_FUNC = LERP;
     
     //------------------------------------------------------------
     
     public static final double SCALE = 0.003;
-    public static final IFunc F_SCALE = IFunc.constant(0.003);
-    public static final IFunc F_ROUGHNESS = new IFunc(n -> 0.55f + 0.1f*n);
+    public static final IFunc F_SCALE = IFunc.constant(SCALE);
+    public static final IFunc F_ROUGHNESS = new IFunc(n -> 0.55 /*0.1f*n*/);
     
     public static int getHeight(int x, int y){
         return HEIGHT_FUNC.intOf(scaledNoise(x+HEIGHT_SEED_X, y+HEIGHT_SEED_Y, F_ROUGHNESS, F_SCALE));

@@ -42,9 +42,9 @@ public class NoiseUtils {
         }
 
         return total/maxValue;
-    } 
+    } */
     
-    public static double octaved_noise2v2(double x, double y, int octaves, float roughness, float scale){
+    public static double octaved_noise2(double x, double y, int octaves, float roughness, float scale){
         double noiseSum = 0;
         double layerFrequency = scale;
         double layerWeight = 1;
@@ -59,7 +59,7 @@ public class NoiseUtils {
             layerWeight *= roughness;
         }
         return noiseSum / weightSum;
-    }*/
+    }
     
     public static double complex_noise2(double x, double y, int octaves, IFunc roughness, IFunc scale){
         double n0 = SimplexNoise.noise(x,y);
@@ -69,15 +69,13 @@ public class NoiseUtils {
         double weightSum = 0;
 	
         for (int octave = 0; octave < octaves; octave++) {
-            //x *= layerFrequency;
-            //y *= layerFrequency;
-            noiseSum += SimplexNoise.noise(x*layerFrequency, y*layerFrequency) * layerWeight;
+            noiseSum += SimplexNoise.noise(x*layerFrequency, y*layerFrequency, 0) * layerWeight;
             layerFrequency *= 2;
             weightSum += layerWeight;
             layerWeight *= roughness.of(n0);
         }
         //System.out.println(noiseSum / weightSum);
-        return noiseSum / weightSum;
+        return ((noiseSum/weightSum)+1)/2;
     }
     
     

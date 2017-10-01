@@ -23,154 +23,111 @@ public class Biome {
     
     public static final List<Biome> BIOMES = new ArrayList<>();
     
-    public static final Biome OCEAN = new Biome(new Tile[]{Tile.EMPTY}, new double[]{1}, 
+    public static final Biome OCEAN_TRENCH = new Biome(new Tile[]{Tile.EMPTY}, new double[]{1}, 
+                                                new Tile[]{Tile.STONE}, new double[]{1});
+    public static final Biome DEEP_OCEAN = new Biome(new Tile[]{Tile.EMPTY}, new double[]{1}, 
                                                 new Tile[]{Tile.SAND, Tile.STONE}, new double[]{0.9, 0.1});
-    public static final Biome FOREST = new Biome(new Tile[]{Tile.EMPTY, Tile.TREE_NORMAL, Tile.TREE_PINE, Tile.BUSH}, new double[]{.6, .2, .15, .05}, 
+    public static final Biome MID_OCEAN = new Biome(new Tile[]{Tile.EMPTY}, new double[]{1}, 
+                                                new Tile[]{Tile.SAND, Tile.STONE}, new double[]{0.9, 0.1});
+    public static final Biome SHALLOW_OCEAN = new Biome(new Tile[]{Tile.EMPTY}, new double[]{1}, 
+                                                new Tile[]{Tile.SAND, Tile.STONE}, new double[]{0.9, 0.1});
+    public static final Biome FOREST = new Biome(new Tile[]{Tile.EMPTY, Tile.TREE_NORMAL, Tile.TREE_PINE, Tile.BUSH, Tile.TALL_GRASS}, new double[]{.05, .15, .15, 0.1, 0.55}, 
                                                new Tile[]{Tile.GRASS, Tile.DIRT}, new double[]{0.9, 0.1});
-    public static final Biome LAND = new Biome(new Tile[]{Tile.EMPTY, Tile.TREE_NORMAL, Tile.TREE_PINE, Tile.BUSH}, new double[]{.35, .3, .3, 0.05}, 
+    public static final Biome RAIN_FOREST = new Biome(new Tile[]{Tile.EMPTY, Tile.TREE_NORMAL, Tile.TREE_PINE, Tile.BUSH, Tile.TALL_GRASS}, new double[]{.05, .4, .4, 0.1, 0.05}, 
                                                new Tile[]{Tile.GRASS, Tile.DIRT}, new double[]{0.9, 0.1});
+    public static final Biome TAIGA = new Biome(new Tile[]{Tile.EMPTY, Tile.TREE_NORMAL, Tile.TREE_PINE, Tile.BUSH, Tile.TALL_GRASS}, new double[]{.05, .15, .15, 0.1, 0.55}, 
+                                               new Tile[]{Tile.GRASS, Tile.DIRT, Tile.SNOW}, new double[]{0.1, 0.1, 0.8});
+    public static final Biome PLAIN = new Biome(new Tile[]{Tile.EMPTY, Tile.TREE_NORMAL, Tile.TREE_PINE, Tile.TALL_GRASS, Tile.BUSH, Tile.BOULDER}, new double[]{.35, .01, .01, .6, 0.02, 0.01}, 
+                                               new Tile[]{Tile.GRASS, Tile.DIRT}, new double[]{0.9, 0.1});
+    public static final Biome DESERT = new Biome(new Tile[]{Tile.EMPTY, Tile.DEAD_BUSH, Tile.BOULDER}, new double[]{.95, .04, 0.01}, 
+                                               new Tile[]{Tile.SAND, Tile.DIRT}, new double[]{0.9, 0.1});
+    public static final Biome LOW_MOUNTAIN = new Biome(new Tile[]{Tile.EMPTY, Tile.DEAD_BUSH}, new double[]{.95, .05}, 
+                                               new Tile[]{Tile.DIRT, Tile.GRASS, Tile.STONE}, new double[]{.33,.33,.34});
+    public static final Biome MOUNTAIN = new Biome(new Tile[]{Tile.EMPTY, Tile.DEAD_BUSH}, new double[]{.95, .05}, 
+                                               new Tile[]{Tile.STONE}, new double[]{1});
+    public static final Biome HIGH_MOUNTAIN = new Biome(new Tile[]{Tile.EMPTY}, new double[]{1}, 
+                                               new Tile[]{Tile.STONE, Tile.SNOW, Tile.ICE}, new double[]{0.2, 0.6, 0.2});
     
-    public static final int HEIGHT_GRADATION = 8;
+    
+    public static final int HEIGHT_GRADATION = 16;
     public static final int PRECIP_GRADATION = 4;
     public static final int TEMP_GRADATION = 4;
     public static final Biome[][][] THE_CUBE = new Biome[HEIGHT_GRADATION][PRECIP_GRADATION][TEMP_GRADATION];
     static {
-        THE_CUBE[0][0][0] = OCEAN;
-        THE_CUBE[0][0][1] = OCEAN;
-        THE_CUBE[0][0][2] = OCEAN;
-        THE_CUBE[0][0][3] = OCEAN;
-        THE_CUBE[0][1][0] = OCEAN;
-        THE_CUBE[0][1][1] = OCEAN;
-        THE_CUBE[0][1][2] = OCEAN;
-        THE_CUBE[0][1][3] = OCEAN;
-        THE_CUBE[0][2][0] = OCEAN;
-        THE_CUBE[0][2][1] = OCEAN;
-        THE_CUBE[0][2][2] = OCEAN;
-        THE_CUBE[0][2][3] = OCEAN;
-        THE_CUBE[0][3][0] = OCEAN;
-        THE_CUBE[0][3][1] = OCEAN;
-        THE_CUBE[0][3][2] = OCEAN;
-        THE_CUBE[0][3][3] = OCEAN;
+        for(int precip=0; precip < PRECIP_GRADATION; precip++){
+            for(int temp=0; temp < TEMP_GRADATION; temp++){
+                THE_CUBE[0][precip][temp] = OCEAN_TRENCH;
+                THE_CUBE[1][precip][temp] = DEEP_OCEAN;
+                THE_CUBE[2][precip][temp] = DEEP_OCEAN;
+                THE_CUBE[3][precip][temp] = DEEP_OCEAN;
+                THE_CUBE[4][precip][temp] = MID_OCEAN;
+                THE_CUBE[5][precip][temp] = MID_OCEAN;
+                THE_CUBE[6][precip][temp] = MID_OCEAN;
+                THE_CUBE[7][precip][temp] = SHALLOW_OCEAN;
+            }
+        }
         
-        THE_CUBE[1][0][0] = OCEAN;
-        THE_CUBE[1][0][1] = OCEAN;
-        THE_CUBE[1][0][2] = OCEAN;
-        THE_CUBE[1][0][3] = OCEAN;
-        THE_CUBE[1][1][0] = OCEAN;
-        THE_CUBE[1][1][1] = OCEAN;
-        THE_CUBE[1][1][2] = OCEAN;
-        THE_CUBE[1][1][3] = OCEAN;
-        THE_CUBE[1][2][0] = OCEAN;
-        THE_CUBE[1][2][1] = OCEAN;
-        THE_CUBE[1][2][2] = OCEAN;
-        THE_CUBE[1][2][3] = OCEAN;
-        THE_CUBE[1][3][0] = OCEAN;
-        THE_CUBE[1][3][1] = OCEAN;
-        THE_CUBE[1][3][2] = OCEAN;
-        THE_CUBE[1][3][3] = OCEAN;
-        
-        THE_CUBE[2][0][0] = OCEAN;
-        THE_CUBE[2][0][1] = OCEAN;
-        THE_CUBE[2][0][2] = OCEAN;
-        THE_CUBE[2][0][3] = OCEAN;
-        THE_CUBE[2][1][0] = OCEAN;
-        THE_CUBE[2][1][1] = OCEAN;
-        THE_CUBE[2][1][2] = OCEAN;
-        THE_CUBE[2][1][3] = OCEAN;
-        THE_CUBE[2][2][0] = OCEAN;
-        THE_CUBE[2][2][1] = OCEAN;
-        THE_CUBE[2][2][2] = OCEAN;
-        THE_CUBE[2][2][3] = OCEAN;
-        THE_CUBE[2][3][0] = OCEAN;
-        THE_CUBE[2][3][1] = OCEAN;
-        THE_CUBE[2][3][2] = OCEAN;
-        THE_CUBE[2][3][3] = OCEAN;
-        
-        THE_CUBE[3][0][0] = OCEAN;
-        THE_CUBE[3][0][1] = OCEAN;
-        THE_CUBE[3][0][2] = OCEAN;
-        THE_CUBE[3][0][3] = OCEAN;
-        THE_CUBE[3][1][0] = OCEAN;
-        THE_CUBE[3][1][1] = OCEAN;
-        THE_CUBE[3][1][2] = OCEAN;
-        THE_CUBE[3][1][3] = OCEAN;
-        THE_CUBE[3][2][0] = OCEAN;
-        THE_CUBE[3][2][1] = OCEAN;
-        THE_CUBE[3][2][2] = OCEAN;
-        THE_CUBE[3][2][3] = OCEAN;
-        THE_CUBE[3][3][0] = OCEAN;
-        THE_CUBE[3][3][1] = OCEAN;
-        THE_CUBE[3][3][2] = OCEAN;
-        THE_CUBE[3][3][3] = OCEAN;
-        
-        THE_CUBE[4][0][0] = LAND;
-        THE_CUBE[4][0][1] = LAND;
-        THE_CUBE[4][0][2] = LAND;
-        THE_CUBE[4][0][3] = LAND;
-        THE_CUBE[4][1][0] = LAND;
-        THE_CUBE[4][1][1] = LAND;
-        THE_CUBE[4][1][2] = LAND;
-        THE_CUBE[4][1][3] = LAND;
-        THE_CUBE[4][2][0] = LAND;
-        THE_CUBE[4][2][1] = LAND;
-        THE_CUBE[4][2][2] = LAND;
-        THE_CUBE[4][2][3] = LAND;
-        THE_CUBE[4][3][0] = LAND;
-        THE_CUBE[4][3][1] = LAND;
-        THE_CUBE[4][3][2] = LAND;
-        THE_CUBE[4][3][3] = LAND;
-        
-        THE_CUBE[5][0][0] = LAND;
-        THE_CUBE[5][0][1] = LAND;
-        THE_CUBE[5][0][2] = LAND;
-        THE_CUBE[5][0][3] = LAND;
-        THE_CUBE[5][1][0] = LAND;
-        THE_CUBE[5][1][1] = LAND;
-        THE_CUBE[5][1][2] = LAND;
-        THE_CUBE[5][1][3] = LAND;
-        THE_CUBE[5][2][0] = LAND;
-        THE_CUBE[5][2][1] = LAND;
-        THE_CUBE[5][2][2] = LAND;
-        THE_CUBE[5][2][3] = LAND;
-        THE_CUBE[5][3][0] = LAND;
-        THE_CUBE[5][3][1] = LAND;
-        THE_CUBE[5][3][2] = LAND;
-        THE_CUBE[5][3][3] = LAND;
-        
-        THE_CUBE[6][0][0] = LAND;
-        THE_CUBE[6][0][1] = LAND;
-        THE_CUBE[6][0][2] = LAND;
-        THE_CUBE[6][0][3] = LAND;
-        THE_CUBE[6][1][0] = LAND;
-        THE_CUBE[6][1][1] = LAND;
-        THE_CUBE[6][1][2] = LAND;
-        THE_CUBE[6][1][3] = LAND;
-        THE_CUBE[6][2][0] = LAND;
-        THE_CUBE[6][2][1] = LAND;
-        THE_CUBE[6][2][2] = LAND;
-        THE_CUBE[6][2][3] = LAND;
-        THE_CUBE[6][3][0] = LAND;
-        THE_CUBE[6][3][1] = LAND;
-        THE_CUBE[6][3][2] = LAND;
-        THE_CUBE[6][3][3] = LAND;
-        
-        THE_CUBE[7][0][0] = LAND;
-        THE_CUBE[7][0][1] = LAND;
-        THE_CUBE[7][0][2] = LAND;
-        THE_CUBE[7][0][3] = LAND;
-        THE_CUBE[7][1][0] = LAND;
-        THE_CUBE[7][1][1] = LAND;
-        THE_CUBE[7][1][2] = LAND;
-        THE_CUBE[7][1][3] = LAND;
-        THE_CUBE[7][2][0] = LAND;
-        THE_CUBE[7][2][1] = LAND;
-        THE_CUBE[7][2][2] = LAND;
-        THE_CUBE[7][2][3] = LAND;
-        THE_CUBE[7][3][0] = LAND;
-        THE_CUBE[7][3][1] = LAND;
-        THE_CUBE[7][3][2] = LAND;
-        THE_CUBE[7][3][3] = LAND;
-        
+        for(int precip=0; precip < PRECIP_GRADATION; precip++){
+            for(int temp=0; temp < TEMP_GRADATION; temp++){
+                if(precip<PRECIP_GRADATION/2 && temp<TEMP_GRADATION/2){
+                    THE_CUBE[8][precip][temp] = PLAIN;
+                    THE_CUBE[9][precip][temp] = PLAIN;
+                    THE_CUBE[10][precip][temp] = PLAIN;
+                    THE_CUBE[11][precip][temp] = PLAIN;
+                    THE_CUBE[12][precip][temp] = PLAIN;
+                    THE_CUBE[13][precip][temp] = LOW_MOUNTAIN;
+                    THE_CUBE[14][precip][temp] = MOUNTAIN;
+                    THE_CUBE[15][precip][temp] = HIGH_MOUNTAIN;
+                }
+                if(precip<PRECIP_GRADATION/2 && temp>=TEMP_GRADATION/2){
+                    THE_CUBE[8][precip][temp] = DESERT;
+                    THE_CUBE[9][precip][temp] = DESERT;
+                    THE_CUBE[10][precip][temp] = DESERT;
+                    THE_CUBE[11][precip][temp] = DESERT;
+                    THE_CUBE[12][precip][temp] = DESERT;
+                    THE_CUBE[13][precip][temp] = LOW_MOUNTAIN;
+                    THE_CUBE[14][precip][temp] = MOUNTAIN;
+                    THE_CUBE[15][precip][temp] = HIGH_MOUNTAIN;
+                }
+                if(precip>=PRECIP_GRADATION/2 && temp<TEMP_GRADATION/2){
+                    THE_CUBE[8][precip][temp] = TAIGA;
+                    THE_CUBE[9][precip][temp] = TAIGA;
+                    THE_CUBE[10][precip][temp] = TAIGA;
+                    THE_CUBE[11][precip][temp] = TAIGA;
+                    THE_CUBE[12][precip][temp] = TAIGA;
+                    THE_CUBE[13][precip][temp] = LOW_MOUNTAIN;
+                    THE_CUBE[14][precip][temp] = MOUNTAIN;
+                    THE_CUBE[15][precip][temp] = HIGH_MOUNTAIN;
+                }
+                if(precip>=PRECIP_GRADATION/2 && temp>=TEMP_GRADATION/2){
+                    THE_CUBE[8][precip][temp] = RAIN_FOREST;
+                    THE_CUBE[9][precip][temp] = RAIN_FOREST;
+                    THE_CUBE[10][precip][temp] = RAIN_FOREST;
+                    THE_CUBE[11][precip][temp] = RAIN_FOREST;
+                    THE_CUBE[12][precip][temp] = RAIN_FOREST;
+                    THE_CUBE[13][precip][temp] = LOW_MOUNTAIN;
+                    THE_CUBE[14][precip][temp] = MOUNTAIN;
+                    THE_CUBE[15][precip][temp] = HIGH_MOUNTAIN;
+                }
+            }
+        }
+        /*
+        THE_CUBE[8][0][0] = MID_OCEAN;
+        THE_CUBE[8][0][1] = MID_OCEAN;
+        THE_CUBE[8][0][2] = MID_OCEAN;
+        THE_CUBE[8][0][3] = MID_OCEAN;
+        THE_CUBE[8][1][0] = MID_OCEAN;
+        THE_CUBE[8][1][1] = MID_OCEAN;
+        THE_CUBE[8][1][2] = MID_OCEAN;
+        THE_CUBE[8][1][3] = MID_OCEAN;
+        THE_CUBE[8][2][0] = MID_OCEAN;
+        THE_CUBE[8][2][1] = MID_OCEAN;
+        THE_CUBE[8][2][2] = MID_OCEAN;
+        THE_CUBE[8][2][3] = MID_OCEAN;
+        THE_CUBE[8][3][0] = MID_OCEAN;
+        THE_CUBE[8][3][1] = MID_OCEAN;
+        THE_CUBE[8][3][2] = MID_OCEAN;
+        THE_CUBE[8][3][3] = MID_OCEAN;*/
         
         
     }
@@ -187,34 +144,37 @@ public class Biome {
     private final List<TileEntry> eTileEntries;
     private final List<TileEntry> tTileEntries;
     
-    private Biome(Tile[] etiles, double[] eprobs, Tile[] ttiles, double[] tprobs){
+    private Biome(Tile[] e_tiles, double[] e_probs, Tile[] t_tiles, double[] t_probs){
+        if(e_tiles.length != e_probs.length || t_tiles.length != t_probs.length){
+            throw new Error("array dim mismatch");
+        }
         BIOMES.add(this);
         eTileEntries = new ArrayList<>();
         tTileEntries = new ArrayList<>();
         
         double epSum = 0;
-        for(int i=0; i<eprobs.length; i++){
-            epSum += eprobs[i];
+        for(int i=0; i<e_probs.length; i++){
+            epSum += e_probs[i];
         }        
-        for(int i=0; i<eprobs.length; i++){
-            eprobs[i] /= epSum;
+        for(int i=0; i<e_probs.length; i++){
+            e_probs[i] /= epSum;
         }
         
-        for(int i=0; i<etiles.length; i++){
-            eTileEntries.add(new TileEntry(etiles[i], eprobs[i]));
+        for(int i=0; i<e_tiles.length; i++){
+            eTileEntries.add(new TileEntry(e_tiles[i], e_probs[i]));
         }
         
         
         double tpSum = 0;
-        for(int i=0; i<tprobs.length; i++){
-            tpSum += tprobs[i];
+        for(int i=0; i<t_probs.length; i++){
+            tpSum += t_probs[i];
         }        
-        for(int i=0; i<tprobs.length; i++){
-            tprobs[i] /= tpSum;
+        for(int i=0; i<t_probs.length; i++){
+            t_probs[i] /= tpSum;
         }
         
-        for(int i=0; i<ttiles.length; i++){
-            tTileEntries.add(new TileEntry(ttiles[i], tprobs[i]));
+        for(int i=0; i<t_tiles.length; i++){
+            tTileEntries.add(new TileEntry(t_tiles[i], t_probs[i]));
         }
         
         X_OFF = (int)((Math.random()-0.5)*2*Integer.MAX_VALUE);
@@ -222,11 +182,11 @@ public class Biome {
     }
     
     public Tile getETile(int x, int y){
-        return getETileFromRandom(x, y);
+        return getETileFromCoords(x, y);
     }
     
     public Tile getTTile(int x, int y){
-        return getTTileFromRandom(x, y);
+        return getTTileFromCoords(x, y);
     }
     
     private Tile getETileFromRandom(int x, int y){
@@ -287,7 +247,7 @@ public class Biome {
     
     private static class TileEntry {
         static IFunc F_TILE_ROUGHNESS = IFunc.constant(0);
-        static IFunc F_TILE_SCALE = IFunc.constant(1);
+        static IFunc F_TILE_SCALE = IFunc.constant(0.03);
         
         Tile tile;
         double prob;
