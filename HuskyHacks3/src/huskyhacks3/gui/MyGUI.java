@@ -9,19 +9,14 @@ import javax.swing.*;
 public class MyGUI {
 
     private Frame mainFrame;
-    private Panel controlPanel;
+    private JPanel controlPanel;
 
-    public MyGUI(Controller controller){
-        prepareGUI(controller);
-        showCanvas(controller);
+    public MyGUI(Controller controller, Controller.KeyboardListener keyboardListener){
+        prepareGUI(controller, keyboardListener);
+        showCanvas(controller, keyboardListener);
     }
 
-//    public static void main(String[] args){
-//        MyGUI gui = new MyGUI();
-//        gui.showCanvas();
-//    }
-
-    private void prepareGUI(Controller controller){
+    private void prepareGUI(Controller controller, Controller.KeyboardListener keyboardListener){
         mainFrame = new Frame("Procedural Generation");
         mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         mainFrame.setLayout(new GridLayout(1, 1));
@@ -31,16 +26,18 @@ public class MyGUI {
             }
         });
 
-        controlPanel = new Panel();
+        controlPanel = new JPanel();
         controlPanel.setLayout(new FlowLayout());
         mainFrame.add(controlPanel);
-        showCanvas(controller);
+        showCanvas(controller, keyboardListener);
         mainFrame.setVisible(true);
     }
 
-    private void showCanvas(Controller controller){
-        controlPanel.add(new MyCanvas(mainFrame.getSize(), controller));
+    private void showCanvas(Controller controller, Controller.KeyboardListener keyboardListener){
+        controlPanel.add(new MyCanvas(mainFrame.getSize(), controller, keyboardListener));
     }
 
-
+    public void repaint() {
+        mainFrame.repaint();
+    }
 }
