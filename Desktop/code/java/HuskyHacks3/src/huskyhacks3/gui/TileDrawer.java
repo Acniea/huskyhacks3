@@ -4,6 +4,7 @@ package huskyhacks3.gui;
 
 
 import huskyhacks3.world.data.Chunk;
+import huskyhacks3.world.data.World;
 import java.awt.Graphics;
 
 import java.awt.Graphics2D;

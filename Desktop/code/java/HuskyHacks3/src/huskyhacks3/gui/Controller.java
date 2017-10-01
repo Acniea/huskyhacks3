@@ -91,6 +91,11 @@ public class Controller implements Runnable{
         if(screen.keyboard.right){
             xPos += 50;
         }
+        /*if(screen.keyboard.r){
+            world = new World();
+            chunkRecorder = new ChunkRecorder(this);
+            System.out.println("reload");
+        }*/
     }
     
     private void render(){

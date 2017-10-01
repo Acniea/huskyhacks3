@@ -18,7 +18,7 @@ public class Generator {
     
     //------------------------------------------------------------
     
-    private static final int SEED = (int)(System.nanoTime());
+    private static final int SEED = 0;//(int)(Math.random()*System.nanoTime());
     
     private static final int HASH(int x){
         return x*x*x*x;
@@ -43,7 +43,7 @@ public class Generator {
     
     //------------------------------------------------------------
     
-    public static final double SCALE = 0.0003;
+    public static final double SCALE = 0.00003;
     public static final IFunc F_SCALE = IFunc.constant(SCALE);
     public static final IFunc F_ROUGHNESS = new IFunc(n -> 0.55 /*0.1f*n*/);
     

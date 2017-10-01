@@ -35,7 +35,7 @@ public class Biome {
                                                new Tile[]{Tile.SAND}, new double[]{1});
     public static final Biome FOREST = new Biome(new Tile[]{Tile.EMPTY, Tile.TREE_NORMAL, Tile.TREE_PINE, Tile.BUSH, Tile.TALL_GRASS}, new double[]{.05, .15, .15, 0.1, 0.55}, 
                                                new Tile[]{Tile.GRASS, Tile.DIRT}, new double[]{0.9, 0.1});
-    public static final Biome RAIN_FOREST = new Biome(new Tile[]{Tile.EMPTY, Tile.TREE_NORMAL, Tile.TREE_PINE, Tile.BUSH, Tile.TALL_GRASS}, new double[]{.05, .4, .4, 0.1, 0.05}, 
+    public static final Biome RAIN_FOREST = new Biome(new Tile[]{Tile.EMPTY, Tile.TREE_NORMAL, Tile.TREE_PINE, Tile.BUSH, Tile.TALL_GRASS}, new double[]{.05, .3, .3, 0.15, 0.2}, 
                                                new Tile[]{Tile.GRASS, Tile.DIRT}, new double[]{0.9, 0.1});
     public static final Biome TAIGA = new Biome(new Tile[]{Tile.EMPTY, Tile.TREE_NORMAL, Tile.TREE_PINE, Tile.BUSH, Tile.TALL_GRASS}, new double[]{.05, .15, .15, 0.1, 0.55}, 
                                                new Tile[]{Tile.GRASS, Tile.DIRT, Tile.SNOW}, new double[]{0.1, 0.1, 0.8});
@@ -135,9 +135,6 @@ public class Biome {
         int h = height/(Chunk.MAX_VALUE/HEIGHT_GRADATION);
         int p = precip/(Chunk.MAX_VALUE/PRECIP_GRADATION);
         int t = temp/(Chunk.MAX_VALUE/TEMP_GRADATION);
-        System.out.println(height +" "+h);
-        System.out.println(precip +" "+p);
-        System.out.println(temp +" "+t);
         return THE_CUBE[h][p][t];
     }
     
