@@ -5,6 +5,7 @@
  */
 package huskyhacks3.gui;
 
+import huskyhacks3.gui.Sprite;
 import huskyhacks3.world.data.tile.Tile;
 import java.awt.image.BufferedImage;
 import java.io.File;

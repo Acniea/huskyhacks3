@@ -15,15 +15,16 @@ import huskyhacks3.world.data.tile.Tile;
  */
 public class Main {
     public static void main(String[] args) {
-        World w = new World();
-        printChunk(w.get(0,0));
-//        Controller controller = new Controller();
+//        World w = new World();
+//        printChunk(w.get(0,0));
+        Controller controller = new Controller();
+        controller.main();
     }
     
     public static void printChunk(Chunk c){
         for(int x=0; x<Chunk.CHUNK_SIZE; x++){
             for(int y=0; y<Chunk.CHUNK_SIZE; y++){
-                System.out.print((toStr(c.getSurface(x, y))));
+                System.out.print((toStr(c.getEnvironment(x, y))));
             }
             System.out.println();
         }

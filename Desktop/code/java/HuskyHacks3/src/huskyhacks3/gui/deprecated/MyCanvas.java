@@ -1,5 +1,6 @@
-package huskyhacks3.gui;
+package huskyhacks3.gui.deprecated;
 
+import huskyhacks3.gui.ChunkRecorder;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 

@@ -33,6 +33,10 @@ public class Biome {
                                                 new Tile[]{Tile.SAND, Tile.STONE}, new double[]{0.9, 0.1});
     public static final Biome FOREST = new Biome(new Tile[]{Tile.EMPTY, Tile.TREE_NORMAL, Tile.TREE_PINE, Tile.BUSH, Tile.TALL_GRASS}, new double[]{.05, .15, .15, 0.1, 0.55}, 
                                                new Tile[]{Tile.GRASS, Tile.DIRT}, new double[]{0.9, 0.1});
+    public static final Biome RAIN_FOREST = new Biome(new Tile[]{Tile.EMPTY, Tile.TREE_NORMAL, Tile.TREE_PINE, Tile.BUSH, Tile.TALL_GRASS}, new double[]{.05, .4, .4, 0.1, 0.05}, 
+                                               new Tile[]{Tile.GRASS, Tile.DIRT}, new double[]{0.9, 0.1});
+    public static final Biome TAIGA = new Biome(new Tile[]{Tile.EMPTY, Tile.TREE_NORMAL, Tile.TREE_PINE, Tile.BUSH, Tile.TALL_GRASS}, new double[]{.05, .15, .15, 0.1, 0.55}, 
+                                               new Tile[]{Tile.GRASS, Tile.DIRT, Tile.SNOW}, new double[]{0.1, 0.1, 0.8});
     public static final Biome PLAIN = new Biome(new Tile[]{Tile.EMPTY, Tile.TREE_NORMAL, Tile.TREE_PINE, Tile.TALL_GRASS, Tile.BUSH, Tile.BOULDER}, new double[]{.35, .01, .01, .6, 0.02, 0.01}, 
                                                new Tile[]{Tile.GRASS, Tile.DIRT}, new double[]{0.9, 0.1});
     public static final Biome DESERT = new Biome(new Tile[]{Tile.EMPTY, Tile.DEAD_BUSH, Tile.BOULDER}, new double[]{.95, .04, 0.01}, 
@@ -65,33 +69,65 @@ public class Biome {
         
         for(int precip=0; precip < PRECIP_GRADATION; precip++){
             for(int temp=0; temp < TEMP_GRADATION; temp++){
-                THE_CUBE[8][precip][temp] = FOREST;
-                THE_CUBE[9][precip][temp] = FOREST;
-                THE_CUBE[10][precip][temp] = FOREST;
-                THE_CUBE[11][precip][temp] = FOREST;
-                THE_CUBE[12][precip][temp] = LOW_MOUNTAIN;
-                THE_CUBE[13][precip][temp] = LOW_MOUNTAIN;
-                THE_CUBE[14][precip][temp] = MOUNTAIN;
-                THE_CUBE[15][precip][temp] = HIGH_MOUNTAIN;
+                if(precip<PRECIP_GRADATION/2 && temp<TEMP_GRADATION/2){
+                    THE_CUBE[8][precip][temp] = PLAIN;
+                    THE_CUBE[9][precip][temp] = PLAIN;
+                    THE_CUBE[10][precip][temp] = PLAIN;
+                    THE_CUBE[11][precip][temp] = PLAIN;
+                    THE_CUBE[12][precip][temp] = PLAIN;
+                    THE_CUBE[13][precip][temp] = LOW_MOUNTAIN;
+                    THE_CUBE[14][precip][temp] = MOUNTAIN;
+                    THE_CUBE[15][precip][temp] = HIGH_MOUNTAIN;
+                }
+                if(precip<PRECIP_GRADATION/2 && temp>=TEMP_GRADATION/2){
+                    THE_CUBE[8][precip][temp] = DESERT;
+                    THE_CUBE[9][precip][temp] = DESERT;
+                    THE_CUBE[10][precip][temp] = DESERT;
+                    THE_CUBE[11][precip][temp] = DESERT;
+                    THE_CUBE[12][precip][temp] = DESERT;
+                    THE_CUBE[13][precip][temp] = LOW_MOUNTAIN;
+                    THE_CUBE[14][precip][temp] = MOUNTAIN;
+                    THE_CUBE[15][precip][temp] = HIGH_MOUNTAIN;
+                }
+                if(precip>=PRECIP_GRADATION/2 && temp<TEMP_GRADATION/2){
+                    THE_CUBE[8][precip][temp] = TAIGA;
+                    THE_CUBE[9][precip][temp] = TAIGA;
+                    THE_CUBE[10][precip][temp] = TAIGA;
+                    THE_CUBE[11][precip][temp] = TAIGA;
+                    THE_CUBE[12][precip][temp] = TAIGA;
+                    THE_CUBE[13][precip][temp] = LOW_MOUNTAIN;
+                    THE_CUBE[14][precip][temp] = MOUNTAIN;
+                    THE_CUBE[15][precip][temp] = HIGH_MOUNTAIN;
+                }
+                if(precip>=PRECIP_GRADATION/2 && temp>=TEMP_GRADATION/2){
+                    THE_CUBE[8][precip][temp] = RAIN_FOREST;
+                    THE_CUBE[9][precip][temp] = RAIN_FOREST;
+                    THE_CUBE[10][precip][temp] = RAIN_FOREST;
+                    THE_CUBE[11][precip][temp] = RAIN_FOREST;
+                    THE_CUBE[12][precip][temp] = RAIN_FOREST;
+                    THE_CUBE[13][precip][temp] = LOW_MOUNTAIN;
+                    THE_CUBE[14][precip][temp] = MOUNTAIN;
+                    THE_CUBE[15][precip][temp] = HIGH_MOUNTAIN;
+                }
             }
         }
-        
-        /*THE_CUBE[3][0][0] = MID_OCEAN;
-        THE_CUBE[3][0][1] = MID_OCEAN;
-        THE_CUBE[3][0][2] = MID_OCEAN;
-        THE_CUBE[3][0][3] = MID_OCEAN;
-        THE_CUBE[3][1][0] = MID_OCEAN;
-        THE_CUBE[3][1][1] = MID_OCEAN;
-        THE_CUBE[3][1][2] = MID_OCEAN;
-        THE_CUBE[3][1][3] = MID_OCEAN;
-        THE_CUBE[3][2][0] = MID_OCEAN;
-        THE_CUBE[3][2][1] = MID_OCEAN;
-        THE_CUBE[3][2][2] = MID_OCEAN;
-        THE_CUBE[3][2][3] = MID_OCEAN;
-        THE_CUBE[3][3][0] = MID_OCEAN;
-        THE_CUBE[3][3][1] = MID_OCEAN;
-        THE_CUBE[3][3][2] = MID_OCEAN;
-        THE_CUBE[3][3][3] = MID_OCEAN;*/
+        /*
+        THE_CUBE[8][0][0] = MID_OCEAN;
+        THE_CUBE[8][0][1] = MID_OCEAN;
+        THE_CUBE[8][0][2] = MID_OCEAN;
+        THE_CUBE[8][0][3] = MID_OCEAN;
+        THE_CUBE[8][1][0] = MID_OCEAN;
+        THE_CUBE[8][1][1] = MID_OCEAN;
+        THE_CUBE[8][1][2] = MID_OCEAN;
+        THE_CUBE[8][1][3] = MID_OCEAN;
+        THE_CUBE[8][2][0] = MID_OCEAN;
+        THE_CUBE[8][2][1] = MID_OCEAN;
+        THE_CUBE[8][2][2] = MID_OCEAN;
+        THE_CUBE[8][2][3] = MID_OCEAN;
+        THE_CUBE[8][3][0] = MID_OCEAN;
+        THE_CUBE[8][3][1] = MID_OCEAN;
+        THE_CUBE[8][3][2] = MID_OCEAN;
+        THE_CUBE[8][3][3] = MID_OCEAN;*/
         
         
     }
@@ -109,6 +145,9 @@ public class Biome {
     private final List<TileEntry> tTileEntries;
     
     private Biome(Tile[] e_tiles, double[] e_probs, Tile[] t_tiles, double[] t_probs){
+        if(e_tiles.length != e_probs.length || t_tiles.length != t_probs.length){
+            throw new Error("array dim mismatch");
+        }
         BIOMES.add(this);
         eTileEntries = new ArrayList<>();
         tTileEntries = new ArrayList<>();
@@ -208,7 +247,7 @@ public class Biome {
     
     private static class TileEntry {
         static IFunc F_TILE_ROUGHNESS = IFunc.constant(0);
-        static IFunc F_TILE_SCALE = IFunc.constant(1);
+        static IFunc F_TILE_SCALE = IFunc.constant(0.03);
         
         Tile tile;
         double prob;

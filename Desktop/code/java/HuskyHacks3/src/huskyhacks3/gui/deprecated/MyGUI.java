@@ -1,4 +1,4 @@
-package huskyhacks3.gui;
+package huskyhacks3.gui.deprecated;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;

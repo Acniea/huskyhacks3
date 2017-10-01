@@ -1,5 +1,6 @@
 package huskyhacks3.gui;
 
+import huskyhacks3.gui.deprecated.Controller;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
