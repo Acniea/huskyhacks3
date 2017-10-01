@@ -1,6 +1,7 @@
 package huskyhacks3.gui;
 
 import huskyhacks3.world.data.World;
+import java.awt.Graphics;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -8,8 +9,9 @@ public class Controller implements Runnable{
 
     public Screen screen;
     public World world = new World();
-    TileDrawer tileDrawer;
-    private ChunkRecorder chunkRecorder;
+    public TileDrawer tileDrawer = new VerticalTileDrawer();
+    public ChunkRecorder chunkRecorder = new ChunkRecorder(this);
+    int xPos = 0, yPos  = 0;
     
     private boolean running = false;
     private Thread thread;
@@ -77,11 +79,23 @@ public class Controller implements Runnable{
     
     private void tick(){
         screen.tick();
+        if(screen.keyboard.up){
+            yPos -= 50;
+        }
+        if(screen.keyboard.down){
+            yPos += 50;
+        }
+        if(screen.keyboard.left){
+            xPos -= 50;
+        }
+        if(screen.keyboard.right){
+            xPos += 50;
+        }
     }
     
     private void render(){
-        //world.render(screen);
-	
+        drawChunks(screen);
+        
         screen.render();
     }
     
@@ -89,6 +103,25 @@ public class Controller implements Runnable{
         start();
     }
     
-      
+    public void drawChunks(Screen s){
+        int xMin, xMax, yMin, yMax, xOffset, yOffset;
+        int chunkSize = chunkRecorder.getChunkSize();
+
+        xMin = xPos / chunkSize;
+        xMax = (xPos + s.WIDTH) / chunkSize;
+        yMin = yPos  / chunkSize;
+        yMax = (yPos + s.HEIGHT)/ chunkSize;
+
+        xOffset = xPos % chunkSize;
+        yOffset = yPos % chunkSize;
+
+        for (int x = xMin; x <= xMax; x++) {
+            for (int y = yMin; y <= yMax; y++) {
+                s.drawImage(chunkRecorder.getChunkImage(x, y),
+                        (x - xMin)*chunkSize - xOffset,
+                        (y - yMin)*chunkSize - yOffset);
+            }
+        }
+    }
 }
 

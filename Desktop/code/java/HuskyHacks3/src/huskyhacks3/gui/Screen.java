@@ -78,6 +78,10 @@ public class Screen extends Canvas {
         }
     }
     
+    public void drawImage(BufferedImage bi, int x, int y){
+        draw.getGraphics().drawImage(bi, x, y, this);
+    }
+    
     
     public void setXOff(int i){
 	pxoff=xoff;

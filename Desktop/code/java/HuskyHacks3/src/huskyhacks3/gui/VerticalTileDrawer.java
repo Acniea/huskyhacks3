@@ -9,7 +9,7 @@ import java.awt.*;
  */
 public class VerticalTileDrawer extends TileDrawer{
     @Override
-    public void drawTile(Chunk chunk, int x, int y, Graphics2D graphics2D) {
+    public void drawTile(Chunk chunk, int x, int y, Graphics g) {
         int height = 256*chunk.getHeight(x, y)/(Chunk.MAX_VALUE);
         //between 0 and 512
         //Color c = new Color(height/2, height/2, height/2);
@@ -27,12 +27,12 @@ public class VerticalTileDrawer extends TileDrawer{
         } else {
             c = new Color(value,value,value); //snow
         }
-        graphics2D.setColor(c);
-        graphics2D.fillRect(x * getSize(), y * getSize() , getSize(), getSize());
+        g.setColor(c);
+        g.fillRect(x * getSize(), y * getSize() , getSize(), getSize());
     }
 
     @Override
     public int getSize() {
-        return 2;
+        return 12;
     }
 }

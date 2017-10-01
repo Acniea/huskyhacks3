@@ -1,6 +1,5 @@
 package huskyhacks3.gui;
 
-import huskyhacks3.gui.deprecated.Controller;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -18,13 +17,13 @@ public class ChunkRecorder {
     public ChunkRecorder(Controller controller) {
         chunkImages = new InfiniteGrid<>();
         this.controller = controller;
-        this.tileDrawer = controller.getTileDrawer();
+        this.tileDrawer = controller.tileDrawer;
     }
 
     public BufferedImage getChunkImage(int x, int y) {
         BufferedImage image = chunkImages.get(x, y);
         if (image == null) {
-            BufferedImage newChunkImage = drawChunk(getChunk(x, y));
+            BufferedImage newChunkImage = chunkImage(getChunk(x, y));
             chunkImages.set(newChunkImage, x, y);
             return newChunkImage;
         } else {
@@ -34,7 +33,7 @@ public class ChunkRecorder {
 
 
     private Chunk getChunk(int x, int y) {
-        return controller.getChunk(x, y);
+        return controller.world.get(x, y);
     }
 
 
@@ -42,16 +41,18 @@ public class ChunkRecorder {
         return Chunk.CHUNK_SIZE * tileDrawer.getSize();
     }
 
-    private BufferedImage drawChunk(Chunk chunk) {
+    private BufferedImage chunkImage(Chunk chunk) {
         BufferedImage image = new BufferedImage(getChunkSize(), getChunkSize(), BufferedImage.TYPE_4BYTE_ABGR);
-        Graphics2D g2d = (Graphics2D) image.getGraphics();
+        Graphics g = image.getGraphics();
         for (int x = 0; x < Chunk.CHUNK_SIZE; x++) {
             for (int y = 0; y < Chunk.CHUNK_SIZE; y++) {
-                tileDrawer.drawTile(chunk, x, y, g2d);
+                tileDrawer.drawTile(chunk, x, y, g);
             }
         }
-//        g2d.setColor(Color.cyan);
-//        g2d.drawRect(0, 0 , getChunkSize(), getChunkSize());
+        g.setColor(Color.cyan);
+        g.drawRect(0, 0 , getChunkSize(), getChunkSize());
         return image;
     }
+    
+    
 }
